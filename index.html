@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Bechouche Yacine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Palette Tech Épurée */
+            --sidebar-grad: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); /* Dégradé Bleu Nuit Profond */
+            --accent-color: #2dd4bf; /* Teal/Émeraude pour un accent moderne et pro */
+            --accent-hover: #14b8a6;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --bg-body: #f1f5f9; /* Gris très clair pour le fond */
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * { 
+            box-sizing: border-box; 
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            display: flex;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- BARRE LATÉRALE --- */
+        .sidebar {
+            width: 320px;
+            background: var(--sidebar-grad);
+            color: white;
+            height: 100vh;
+            position: fixed;
+            padding: 50px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            overflow-y: auto;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.05);
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            padding: 5px;
+            background: rgba(255,255,255,0.1);
+            object-fit: cover;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .sidebar h1 { 
+            font-size: 1.4rem; 
+            margin: 0 0 10px 0; 
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar .tag {
+            background: rgba(45, 212, 191, 0.1); /* Fond teal très léger */
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent-color);
+            margin-bottom: 40px;
+            border: 1px solid rgba(45, 212, 191, 0.2);
+        }
+
+        .contact-info {
+            text-align: left;
+            width: 100%;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+        }
+
+        .contact-item { 
+            margin-bottom: 20px; 
+            color: #cbd5e1;
+        }
+        
+        .contact-item b { 
+            color: white; 
+            display: block; 
+            font-weight: 500;
+            margin-bottom: 3px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- CONTENU PRINCIPAL --- */
+        .main-content {
+            margin-left: 320px;
+            padding: 60px 8%;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            margin-bottom: 40px;
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--border-color);
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            color: #0f172a;
+            font-size: 1.4rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 40%;
+            height: 2px;
+            background: var(--accent-color);
+        }
+
+        h3 {
+            color: #1e293b;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: var(--text-muted);
+        }
+
+        .timeline-item {
+            border-left: 2px solid var(--border-color);
+            padding-left: 25px;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--card-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .timeline-item:hover::before {
+            background: var(--accent-color);
+        }
+
+        .skill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+            margin-bottom: 30px;
+        }
+
+        .skill-tag {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            background: #f0fdfa;
+        }
+
+        /* --- NOUVEAU STYLE LANGUES --- */
+        .language-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .language-item:hover {
+            border-color: var(--accent-color);
+        }
+
+        .lang-name {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .lang-level {
+            background: rgba(45, 212, 191, 0.1);
+            color: var(--accent-hover);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(45, 212, 191, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .interest-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        .interest-card:hover {
+            border-left-color: var(--accent-color);
+        }
+
+        .btn-tp {
+            display: inline-block;
+            background: white;
+            color: var(--accent-color) !important;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--accent-color);
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .btn-tp:hover {
+            background: var(--accent-color);
+            color: white !important;
+            box-shadow: 0 4px 12px rgba(45, 212, 191, 0.2);
+        }
+
+        /* Style spécifique pour les photos professionnelles dans le timeline */
+        .timeline-img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: block;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            body { flex-direction: column; }
+            .sidebar { 
+                width: 100%; 
+                height: auto; 
+                position: relative; 
+                padding: 40px 20px;
+            }
+            .main-content { 
+                margin-left: 0; 
+                padding: 30px 20px; 
+            }
+            section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <img src="maphoto.jpg" alt="Photo de moi" class="profile-img">
+        <h1>BECHOUCHE Yacine</h1>
+        <div class="tag">Étudiant</div>
+        
+        <div class="contact-info">
+            <div class="contact-item"><b>Email</b> yacine.bechouche@gmail.com</div>
+            <div class="contact-item"><b>Téléphone</b> 0780294554</div>
+            <div class="contact-item"><b>Localisation</b> Lille, France</div>
+            <a href="CV_Yacine_Bechouche.pdf" target="_blank" style="
+                display: block; 
+                background: var(--accent-color); 
+                color: white; 
+                text-decoration: none; 
+                text-align: center; 
+                padding: 14px; 
+                border-radius: 8px; 
+                margin-top: 35px; 
+                font-weight: 600;
+                font-size: 0.9rem;
+                transition: background 0.3s;
+                border: 1px solid rgba(255,255,255,0.1);
+            " onmouseover="this.style.background='var(--accent-hover)'" onmouseout="this.style.background='var(--accent-color)'">
+                Télécharger mon CV (PDF)
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        
+        <div style="display: flex; justify-content: center; align-items: center; gap: 50px; margin-bottom: 40px;">
+            <img src="logo-reims.png" alt="Logo IUT de Reims" style="height: 60px; width: auto; opacity: 0.8; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+            <img src="logo-lille.png" alt="Logo Université de Lille" style="height: 60px; width: auto; opacity: 0.8; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+        </div>
+
+        <h1 style="text-align: center; letter-spacing: 1px; color: #0f172a; font-size: 2rem; font-weight: 700; margin-bottom: 50px;">
+            Portfolio de Compétences
+        </h1>
+
+        <section id="a-propos">
+            <h2>À propos de moi</h2>
+            <p>Étudiant en L2 Physique à l'Université de Lille, je suis passé par un BUT Mesures Physiques (spécialité Mesures et Analyses Environnementales). Mon projet est d'intégrer une école d'ingénieurs à la rentrée prochaine. Passionné par les sciences appliquées, je cible des spécialisations variées telles que le Génie Physique, les Matériaux, le Génie des Procédés ou des domaines liés à l'Instrumentation.</p>
+        </section>
+
+        <section id="profil-details">
+            <h2>Atouts & Savoir-être</h2>
+            <div class="skill-container">
+                <div class="skill-tag">Autonomie</div>
+                <div class="skill-tag">Rigueur Scientifique</div>
+                <div class="skill-tag">Travail d'équipe</div>
+                <div class="skill-tag">Anglais Technique</div>
+            </div>
+
+            <br>
+            <h2>Langues</h2>
+            <div class="language-container">
+                <div class="language-item">
+                    <span class="lang-name">Français</span>
+                    <span class="lang-level">Maternel</span>
+                </div>
+                <div class="language-item">
+                    <span class="lang-name">Anglais</span>
+                    <span class="lang-level">B2 (Avancé)</span>
+                </div>
+                <div class="language-item">
+                    <span class="lang-name">Allemand</span>
+                    <span class="lang-level">B1 (Base)</span>
+                </div>
+            </div>
+
+            <br>
+            <h2>Centres d'intérêt</h2>
+            <div class="interest-card">
+                <h3 style="margin-top: 0;">Futsal (Compétition)</h3>
+                <p>Pratique du futsal à haut niveau en 2ème division au sein de Reims Métropole Futsal. Cette expérience m'a permis de développer une grande résilience, le sens de la communication et une forte cohésion d'équipe.</p>
+                <img src="futsal.JPG" alt="Futsal" style="width: 100%; max-width: 400px; border-radius: 8px; margin-top: 15px; display: block;">
+            </div>
+
+            <div class="skill-container" style="margin-top: 25px;">
+                <div class="skill-tag">Musculation</div>
+                <div class="skill-tag">Voyages</div>
+                <div class="skill-tag">Barber</div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Parcours Académique</h2>
+            <div class="timeline-item">
+                <b style="color: #0f172a;">2025 - 2026 | L2 Physique - Université de Lille</b>
+                <p>Approfondissement de mes fondamentaux théoriques et mathématiques, complétant ainsi l'expertise technique acquise en BUT Mesures Physiques</p>
+            </div>
+            <div class="timeline-item">
+                <b style="color: #0f172a;">2023 - 2025 | BUT Mesures Physiques - IUT de Reims</b>
+                <p>Spécialisation MAE (Mesures et Analyses Environnementales)</p>
+            </div>
+        </section>
+
+        <section id="experiences-pro">
+            <h2>Expériences Professionnelles</h2>
+            <div class="timeline-item">
+                <p style="color: var(--accent-color); font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">Août 2025</p>
+                <h3 style="margin-top: 0;">Technicien en Instrumentation (CDD)</h3>
+                <p style="margin-top: 5px;"><strong>INRAE - UMR BioEcoAgro</strong> | Barenton-Bugny</p>
+                <p>Intégration du module SmartFlux pour le traitement des flux de gaz à effet de serre en temps réel sur une tour à flux ICOS. Installation et configuration du nouveau caisson d'acquisition de données météo sur le terrain.</p>
+                <img src="cdd.jpg" alt="Photo du CDD (tour à flux ICOS)" class="timeline-img">
+            </div>
+
+            <div class="timeline-item">
+                <p style="color: var(--accent-color); font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">Avril 2025 - Juin 2025</p>
+                <h3 style="margin-top: 0;">Stage Technicien Instrumentation</h3>
+                <p style="margin-top: 5px;"><strong>INRAE - UMR BioEcoAgro</strong> | Barenton-Bugny</p>
+                <p>Programmation et câblage de capteurs environnementaux sur dataloggers Campbell CR1000X. Calibration et optimisation des capteurs pour des mesures précises, gestion de la collecte et du traitement des données environnementales.</p>
+                <img src="stage.jpg" alt="Photo du stage (analyseur de gaz)" class="timeline-img">
+            </div>
+        </section>
+        
+        <section id="competences">
+            <h2>Compétences & Outils</h2>
+            <h3>Informatique & Logiciels</h3>
+            <div class="skill-container">
+                <div class="skill-tag">Suite Office</div>
+                <div class="skill-tag">Python</div>
+                <div class="skill-tag">SolidWorks</div>
+                <div class="skill-tag">C++</div>
+                <div class="skill-tag">Visual Basic</div>
+                <div class="skill-tag">LabVIEW</div>
+                <div class="skill-tag">Regressi</div>
+                <div class="skill-tag">HTML</div>
+                <div class="skill-tag">LaTeX</div>
+            </div>
+
+            <br>
+            <h3>Parc Machines & Instrumentation</h3>
+            <div class="skill-container">
+                <div class="skill-tag">Instruments d'Analyse Chimique</div>
+                <div class="skill-tag">Spectrophotomètre UV-Visible / Fluorescence X</div>
+                <div class="skill-tag">Chromatographe HPLC</div>
+                <div class="skill-tag">Instruments Électroniques</div>
+                <div class="skill-tag">Oscilloscope</div>
+                <div class="skill-tag">Capteurs Électroniques</div>
+            </div>
+        </section>
+
+        <section id="projets">
+            <h2>Compétences validées par des Projets & TP</h2>
+
+            <div class="timeline-item" style="border: none; padding: 0; margin-bottom: 30px;">
+                <div style="background: white; border: 1px solid var(--border-color); padding: 30px; border-radius: 12px; transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--accent-color)'; this.style.boxShadow='0 4px 15px rgba(45, 212, 191, 0.05)';" onmouseout="this.style.borderColor='var(--border-color)'; this.style.boxShadow='none';">
+                    <span style="background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Anglais Scientifique</span>
+                    <h3 style="margin-top: 20px; font-size: 1.2rem;">Atomic Absorption Spectrometry (AAS) Analysis</h3>
+                    <p>Rédaction intégrale en anglais d'un protocole de dosage par spectrométrie d'absorption atomique. Détermination des traces de fer et de cuivre dans un échantillon de vin blanc via la méthode des ajouts dosés.</p>
+                    <a href="tpanglais.pdf" target="_blank" class="btn-tp">Consulter le rapport (PDF)</a>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="border: none; padding: 0; margin-bottom: 30px;">
+                <div style="background: white; border: 1px solid var(--border-color); padding: 30px; border-radius: 12px; transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--accent-color)'; this.style.boxShadow='0 4px 15px rgba(45, 212, 191, 0.05)';" onmouseout="this.style.borderColor='var(--border-color)'; this.style.boxShadow='none';">
+                    <span style="background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Déploiement de la Métrologie</span>
+                    <h3 style="margin-top: 20px; font-size: 1.2rem;">Traitement métrologique en calorimétrie</h3>
+                    <p>Étude des transferts thermiques et détermination de la chaleur massique d'un alliage de laiton. Évaluation rigoureuse des incertitudes de type A (statistiques) et type B (instrumentales) avec propagation des erreurs.</p>
+                    <a href="tpmetrologie.pdf" target="_blank" class="btn-tp">Consulter le TP (PDF)</a>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="border: none; padding: 0;">
+                <div style="background: white; border: 1px solid var(--border-color); padding: 30px; border-radius: 12px; transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--accent-color)'; this.style.boxShadow='0 4px 15px rgba(45, 212, 191, 0.05)';" onmouseout="this.style.borderColor='var(--border-color)'; this.style.boxShadow='none';">
+                    <span style="background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Mettre en œuvre un protocole</span>
+                    <h3 style="margin-top: 20px; font-size: 1.2rem;">Numérisation du diagramme de Stevens</h3>
+                    <p>Développement d'un programme complet (VBA/Excel) pour automatiser le calcul de la sonie globale via la méthode de Stevens. Modélisation de la perception sonore humaine par régressions exponentielles.</p>
+                    <a href="tpld_bechouche_hanel.pdf" target="_blank" class="btn-tp">Consulter le TP (PDF)</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
