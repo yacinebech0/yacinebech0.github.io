@@ -315,6 +315,57 @@
                 padding: 25px;
             }
         }
+
+/* --- MODE IMPRESSION / PDF --- */
+        @media print {
+            /* Force l'impression des couleurs et dégradés */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Passe la page en format vertical (comme sur mobile) pour le A4 */
+            body {
+                display: block;
+                background: white;
+            }
+
+            /* La barre latérale passe en haut comme un en-tête propre */
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 30px 20px;
+                box-shadow: none;
+                page-break-after: avoid; /* Évite de couper juste après l'en-tête */
+            }
+
+            /* Le contenu prend toute la largeur */
+            .main-content {
+                margin-left: 0;
+                padding: 20px 40px;
+            }
+
+            /* ÉVITE QUE LES BLOCS SOIENT COUPÉS EN DEUX ENTRE DEUX PAGES */
+            section, .timeline-item, .interest-card, .skill-container {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            /* Réduit les marges pour gagner de la place sur le papier */
+            section {
+                padding: 25px;
+                margin-bottom: 20px;
+                box-shadow: none; /* Enlève les ombres pour un rendu PDF plus net */
+                border: 1px solid #e2e8f0;
+            }
+
+            h1 {
+                margin-top: 20px;
+                margin-bottom: 30px;
+            }
+        }
+        
     </style>
 </head>
 <body>
