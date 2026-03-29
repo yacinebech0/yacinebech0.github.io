@@ -90,18 +90,12 @@
             font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;
         }
 
-        /* ASTUCE D'AFFICHAGE ECRAN : On utilise Flexbox pour réorganiser l'ordre ! */
+        .portfolio-link { color: #cbd5e1; text-decoration: none; transition: color 0.3s; }
+        .portfolio-link:hover { color: white; }
+
         .main-content {
             margin-left: 320px; padding: 60px 8%; width: 100%; max-width: 1200px;
-            display: flex; flex-direction: column;
         }
-
-        #a-propos { order: 1; }
-        #profil-details { order: 2; }
-        #experience { order: 3; }        /* Expériences passe en 3ème position sur le site */
-        #experiences-pro { order: 4; }   /* Suite des expériences en 4ème position */
-        #competences { order: 5; }       /* Compétences descend tout en bas sur le site ! */
-        #projets { order: 6; }
 
         section {
             background: var(--card-bg); padding: 40px; border-radius: 16px;
@@ -240,8 +234,18 @@
                 border: none !important;
             }
 
+            /* Garder le lien texte du portfolio comme un lien normal sur le PDF */
+            .contact-info a.portfolio-link {
+                display: inline !important;
+                background: transparent !important;
+                color: #475569 !important;
+                padding: 0 !important;
+                font-weight: normal !important;
+                font-size: 8.5pt !important;
+            }
+
             /* --- CONTENU (LE MODE FLOTTANT DU PDF PREND LE RELAIS) --- */
-            .main-content { margin: 0; padding: 0; width: 100%; display: block; /* Annule le flexbox de l'écran pour l'impression */ }
+            .main-content { margin: 0; padding: 0; width: 100%; display: block; }
             .main-content > div:first-child, .main-content > h1 { display: none !important; }
 
             /* Sections compactes */
@@ -294,6 +298,7 @@
                 <div class="contact-item"><b>Email</b> yacine.bechouche@gmail.com</div>
                 <div class="contact-item"><b>Téléphone</b> 0780294554</div>
                 <div class="contact-item"><b>Localisation</b> Lille, France</div>
+                <div class="contact-item"><b>Lien Portfolio</b> <a href="https://yacinebech0.github.io" target="_blank" class="portfolio-link">yacinebech0.github.io</a></div>
                 <a href="CV_Yacine_Bechouche.pdf" target="_blank" style="display: block; background: var(--accent-color); color: white; text-decoration: none; text-align: center; padding: 14px; border-radius: 8px; margin-top: 35px; font-weight: 600; font-size: 0.9rem; transition: background 0.3s; border: 1px solid rgba(255,255,255,0.1);" onmouseover="this.style.background='var(--accent-hover)'" onmouseout="this.style.background='var(--accent-color)'">Télécharger mon CV (PDF)</a>
             </div>
         </div>
@@ -360,33 +365,6 @@
             </div>
         </section>
 
-        <section id="competences">
-            <h2>Compétences & Outils</h2>
-            <h3>Informatique & Logiciels</h3>
-            <div class="skill-container">
-                <div class="skill-tag">Suite Office</div>
-                <div class="skill-tag">Python</div>
-                <div class="skill-tag">SolidWorks</div>
-                <div class="skill-tag">C++</div>
-                <div class="skill-tag">Visual Basic</div>
-                <div class="skill-tag">LabVIEW</div>
-                <div class="skill-tag">Regressi</div>
-                <div class="skill-tag">HTML</div>
-                <div class="skill-tag">LaTeX</div>
-            </div>
-
-            <br>
-            <h3>Parc Machines & Instrumentation</h3>
-            <div class="skill-container">
-                <div class="skill-tag">Instruments d'Analyse Chimique</div>
-                <div class="skill-tag">Spectro UV-Vis / Fluo X</div>
-                <div class="skill-tag">Chromatographe HPLC</div>
-                <div class="skill-tag">Instruments Électroniques</div>
-                <div class="skill-tag">Oscilloscope</div>
-                <div class="skill-tag">Capteurs Électroniques</div>
-            </div>
-        </section>
-
         <section id="experience">
             <h2>Parcours Académique</h2>
             <div class="timeline-item">
@@ -430,6 +408,33 @@
             </div>
         </section>
 
+        <section id="competences">
+            <h2>Compétences & Outils</h2>
+            <h3>Informatique & Logiciels</h3>
+            <div class="skill-container">
+                <div class="skill-tag">Suite Office</div>
+                <div class="skill-tag">Python</div>
+                <div class="skill-tag">SolidWorks</div>
+                <div class="skill-tag">C++</div>
+                <div class="skill-tag">Visual Basic</div>
+                <div class="skill-tag">LabVIEW</div>
+                <div class="skill-tag">Regressi</div>
+                <div class="skill-tag">HTML</div>
+                <div class="skill-tag">LaTeX</div>
+            </div>
+
+            <br>
+            <h3>Parc Machines & Instrumentation</h3>
+            <div class="skill-container">
+                <div class="skill-tag">Instruments d'Analyse Chimique</div>
+                <div class="skill-tag">Spectro UV-Vis / Fluo X</div>
+                <div class="skill-tag">Chromatographe HPLC</div>
+                <div class="skill-tag">Instruments Électroniques</div>
+                <div class="skill-tag">Oscilloscope</div>
+                <div class="skill-tag">Capteurs Électroniques</div>
+            </div>
+        </section>
+
         <section id="projets">
             <h2>Compétences validées par des Projets & TP</h2>
             <div class="projects-grid">
@@ -438,7 +443,7 @@
                     <span class="project-badge">Anglais Scientifique</span>
                     <h3>Atomic Absorption Spectrometry (AAS) Analysis</h3>
                     <p>Rédaction intégrale en anglais d'un protocole de dosage par spectrométrie d'absorption atomique. Détermination des traces de fer et de cuivre dans un échantillon de vin blanc via la méthode des ajouts dosés.</p>
-                    <a href="tpanglais.pdf" target="_blank" class="btn-tp">Consulter le TP</a>
+                    <a href="tpanglais.pdf" target="_blank" class="btn-tp">Consulter le rapport</a>
                 </div>
 
                 <div class="project-card">
@@ -452,7 +457,7 @@
                     <span class="project-badge">Mettre en œuvre un protocole</span>
                     <h3>Numérisation du diagramme de Stevens</h3>
                     <p>Développement d'un programme complet (VBA/Excel) pour automatiser le calcul de la sonie globale via la méthode de Stevens. Modélisation de la perception sonore humaine par régressions exponentielles.</p>
-                    <a href="tpld_bechouche_hanel.pdf" target="_blank" class="btn-tp">Consulter le rapport</a>
+                    <a href="tpld_bechouche_hanel.pdf" target="_blank" class="btn-tp">Consulter le TP</a>
                 </div>
 
             </div>
